@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Solver
 {
@@ -28,6 +29,11 @@ namespace Solver
         public Bucket Fill(int fillAmount)
         {
             return this with { Volume = Volume + fillAmount };
+        }
+
+        public override string ToString()
+        {
+            return $"{{ Id: {this.Id}, {this.Volume}/{this.Capacity} }}";
         }
     }
 }

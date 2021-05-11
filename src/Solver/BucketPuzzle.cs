@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Text;
 
 namespace Solver
 {
@@ -14,9 +16,9 @@ namespace Solver
         public int TargetVolume { get; }
         
         private int Depth { get; }
-        
-        private BucketPuzzle Parent { get; }
-        
+
+        public BucketPuzzle Parent { get; }
+
         private string Action { get; }
 
         public BucketPuzzle Root => Parent == null ? this : Parent.Root;
@@ -132,6 +134,16 @@ namespace Solver
 
             var sequenceEqual = thisState.SequenceEqual(thatState);
             return sequenceEqual;
+        }
+
+        public override string ToString()
+        {
+            const string space = " ";
+            var sb = new StringBuilder();
+            sb.Append(this.Action); 
+            sb.Append(space);
+            sb.AppendJoin(", ", this.Buckets.OrderBy(b => b.Id));
+            return sb.ToString();
         }
     }
 }
