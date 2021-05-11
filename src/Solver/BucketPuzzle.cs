@@ -140,7 +140,7 @@ namespace Solver
         {
             const string space = " ";
             var sb = new StringBuilder();
-            sb.Append(this.Action); 
+            sb.Append(this.Action ?? "Initial State is"); 
             sb.Append(space);
             sb.AppendJoin(", ", this.Buckets.OrderBy(b => b.Id));
             return sb.ToString();
