@@ -9,8 +9,5 @@ namespace Solver
         
         public static BucketPuzzleSolveOutcome CutOff(BucketPuzzle problem) =>
             new(SolutionOutcomeClassification.CutOff, problem);
-
-        public static BucketPuzzleSolveOutcome Failure(BucketPuzzle problem) =>
-            new(SolutionOutcomeClassification.Failure, problem);
     }
 }

@@ -26,6 +26,26 @@ namespace Solver.Tests
         }
 
         [Fact]
+        public void Impossible_Scenario_Cant_Be_Solved()
+        {
+            // Arrange
+            var problem = new BucketPuzzleBuilder()
+                .AddEmptyBucket(2)
+                .AddEmptyBucket(4)
+                .CanRefill(true)
+                .CanEmpty(true)
+                .Build(1);
+            var solver = new IterativeDeepeningSolver();
+
+            // Act
+            var solveOutcome = solver.Solve(problem);
+
+            // Assert
+            solveOutcome.Classification.Should().Be(SolutionOutcomeClassification.CutOff);
+            solveOutcome.RootProblem.Should().BeSameAs(problem);
+        }
+
+        [Fact]
         public void Simple_Scenario_Can_Be_Solved()
         {
             // Arrange
