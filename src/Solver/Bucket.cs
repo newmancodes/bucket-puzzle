@@ -20,7 +20,7 @@ namespace Solver
             return this.Fill(this.RemainingCapacity);
         }
 
-        public Bucket Pour(int pourAmount)
+        public Bucket Empty(int pourAmount)
         {
             return this with { Volume = Volume - pourAmount };
         }

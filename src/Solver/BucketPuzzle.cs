@@ -114,7 +114,7 @@ namespace Solver
             }
             
             return new(
-                this.Buckets.Select(b => b == from ? from.Pour(pourAmount) : b == into ? into.Fill(pourAmount) : b),
+                this.Buckets.Select(b => b == from ? from.Empty(pourAmount) : b == into ? into.Fill(pourAmount) : b),
                 this.CanEmpty,
                 this.CanRefill,
                 this.TargetVolume,
