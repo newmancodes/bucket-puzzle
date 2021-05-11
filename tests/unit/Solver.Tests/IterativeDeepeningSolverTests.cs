@@ -22,6 +22,7 @@ namespace Solver.Tests
 
             // Assert
             solveOutcome.SolutionFound.Should().BeTrue();
+            solveOutcome.Problem.Should().BeSameAs(problem);
         }
     }
 }

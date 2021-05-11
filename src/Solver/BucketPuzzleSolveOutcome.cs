@@ -1,4 +1,4 @@
 namespace Solver
 {
-    public record BucketPuzzleSolveOutcome(bool SolutionFound);
+    public record BucketPuzzleSolveOutcome(bool SolutionFound, BucketPuzzle Problem);
 }

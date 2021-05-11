@@ -1,4 +1,4 @@
 namespace Solver
 {
-    internal record Bucket(int Volume, int Capacity);
+    public record Bucket(int Volume, int Capacity);
 }

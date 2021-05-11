@@ -29,7 +29,7 @@ namespace Solver
         
         public BucketPuzzle Build(int targetVolume)
         {
-            return new();
+            return new(this.buckets, this.canEmpty, this.canRefill, targetVolume);
         }
     }
 }

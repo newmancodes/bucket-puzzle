@@ -3,7 +3,7 @@ namespace Solver
     public class IterativeDeepeningSolver : ISolveBucketPuzzles{
         public BucketPuzzleSolveOutcome Solve(BucketPuzzle problem)
         {
-            return new(false);
+            return new(false, problem);
         }
     }
 }
