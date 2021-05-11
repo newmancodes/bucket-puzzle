@@ -19,6 +19,8 @@ namespace Solver
         
         private string Action { get; }
 
+        public BucketPuzzle Root => Parent == null ? this : Parent.Root;
+
         public BucketPuzzle(IEnumerable<Bucket> buckets, bool canEmpty, bool canRefill, int targetVolume)
         {
             this.Buckets = buckets;
@@ -84,7 +86,7 @@ namespace Solver
         private BucketPuzzle Empty(Bucket bucket)
         {
             return new(
-                this.Buckets.Select(b => b == bucket ? bucket.Empty() : bucket),
+                this.Buckets.Select(b => b.Id == bucket.Id ? bucket.Empty() : b),
                 this.CanEmpty,
                 this.CanRefill,
                 this.TargetVolume,
@@ -96,7 +98,7 @@ namespace Solver
         private BucketPuzzle Fill(Bucket bucket)
         {
             return new(
-                this.Buckets.Select(b => b == bucket ? bucket.Fill() : b),
+                this.Buckets.Select(b => b.Id == bucket.Id ? bucket.Fill() : b),
                 this.CanEmpty,
                 this.CanRefill,
                 this.TargetVolume,
@@ -114,7 +116,7 @@ namespace Solver
             }
             
             return new(
-                this.Buckets.Select(b => b == from ? from.Empty(pourAmount) : b == into ? into.Fill(pourAmount) : b),
+                this.Buckets.Select(b => b.Id == from.Id ? from.Empty(pourAmount) : b.Id == into.Id ? into.Fill(pourAmount) : b),
                 this.CanEmpty,
                 this.CanRefill,
                 this.TargetVolume,
@@ -128,7 +130,8 @@ namespace Solver
             var thisState = this.Buckets.Select(b => (b.Id, b.Volume, b.Capacity)).OrderBy(b => b.Id).ToList();
             var thatState = that.Buckets.Select(b => (b.Id, b.Volume, b.Capacity)).OrderBy(b => b.Id).ToList();
 
-            return thisState.SequenceEqual(thatState);
+            var sequenceEqual = thisState.SequenceEqual(thatState);
+            return sequenceEqual;
         }
     }
 }

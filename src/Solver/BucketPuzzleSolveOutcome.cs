@@ -2,6 +2,8 @@ namespace Solver
 {
     public record BucketPuzzleSolveOutcome(SolutionOutcomeClassification Classification, BucketPuzzle Problem)
     {
+        public BucketPuzzle RootProblem => this.Problem.Root;
+
         public static BucketPuzzleSolveOutcome Solution(BucketPuzzle problem) =>
             new(SolutionOutcomeClassification.Solution, problem);
         
@@ -10,6 +12,5 @@ namespace Solver
 
         public static BucketPuzzleSolveOutcome Failure(BucketPuzzle problem) =>
             new(SolutionOutcomeClassification.Failure, problem);
-
     }
 }

@@ -26,7 +26,27 @@ namespace Solver.Tests
         }
 
         [Fact]
-        public void The_Die_Hard_with_a_Vengeance_Puzzle_Can_Be_Solved()
+        public void Simple_Scenario_Can_Be_Solved()
+        {
+            // Arrange
+            var problem = new BucketPuzzleBuilder()
+                .AddFullBucket(5)
+                .AddEmptyBucket(3)
+                .CanRefill(false)
+                .CanEmpty(false)
+                .Build(3);
+            var solver = new IterativeDeepeningSolver();
+
+            // Act
+            var solveOutcome = solver.Solve(problem);
+
+            // Assert
+            solveOutcome.Classification.Should().Be(SolutionOutcomeClassification.Solution);
+            solveOutcome.RootProblem.Should().BeSameAs(problem);
+        }
+
+        [Fact]
+        public void Die_Hard_with_a_Vengeance_Puzzle_Can_Be_Solved()
         {
             // Arrange
             var problem = new BucketPuzzleBuilder()
@@ -42,7 +62,7 @@ namespace Solver.Tests
 
             // Assert
             solveOutcome.Classification.Should().Be(SolutionOutcomeClassification.Solution);
-            solveOutcome.Problem.Should().BeSameAs(problem);
+            solveOutcome.RootProblem.Should().BeSameAs(problem);
         }
 
         [Fact]
@@ -63,7 +83,7 @@ namespace Solver.Tests
 
             // Assert
             solveOutcome.Classification.Should().Be(SolutionOutcomeClassification.Solution);
-            solveOutcome.Problem.Should().BeSameAs(problem);
+            solveOutcome.RootProblem.Should().BeSameAs(problem);
         }
 
         [Fact]
@@ -84,7 +104,7 @@ namespace Solver.Tests
 
             // Assert
             solveOutcome.Classification.Should().Be(SolutionOutcomeClassification.Solution);
-            solveOutcome.Problem.Should().BeSameAs(problem);
+            solveOutcome.RootProblem.Should().BeSameAs(problem);
         }
     }
 }
