@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Solver
 {
@@ -11,7 +12,13 @@ namespace Solver
 
         public BucketPuzzleBuilder AddEmptyBucket(int capacity)
         {
-            this.buckets.Add(new Bucket(0, capacity));
+            this.buckets.Add(new Bucket(this.buckets.Count(),0, capacity));
+            return this;
+        }
+
+        public BucketPuzzleBuilder AddFullBucket(int capacity)
+        {
+            this.buckets.Add(new Bucket(this.buckets.Count(),capacity, capacity));
             return this;
         }
         

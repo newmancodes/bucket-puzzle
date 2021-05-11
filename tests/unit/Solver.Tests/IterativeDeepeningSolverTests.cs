@@ -21,7 +21,49 @@ namespace Solver.Tests
             var solveOutcome = solver.Solve(problem);
 
             // Assert
-            solveOutcome.SolutionFound.Should().BeTrue();
+            solveOutcome.Classification.Should().Be(SolutionOutcomeClassification.Solution);
+            solveOutcome.Problem.Should().BeSameAs(problem);
+        }
+
+        [Fact]
+        public void Tonys_Puzzle_Can_Be_Solved()
+        {
+            // Arrange
+            var problem = new BucketPuzzleBuilder()
+                .AddFullBucket(12)
+                .AddEmptyBucket(8)
+                .AddEmptyBucket(5)
+                .CanRefill(true)
+                .CanEmpty(true)
+                .Build(6);
+            var solver = new IterativeDeepeningSolver();
+
+            // Act
+            var solveOutcome = solver.Solve(problem);
+
+            // Assert
+            solveOutcome.Classification.Should().Be(SolutionOutcomeClassification.Solution);
+            solveOutcome.Problem.Should().BeSameAs(problem);
+        }
+
+        [Fact]
+        public void Tonys_Puzzle_Can_Be_Solved_Stricly()
+        {
+            // Arrange
+            var problem = new BucketPuzzleBuilder()
+                .AddFullBucket(12)
+                .AddEmptyBucket(8)
+                .AddEmptyBucket(5)
+                .CanRefill(false)
+                .CanEmpty(false)
+                .Build(6);
+            var solver = new IterativeDeepeningSolver();
+
+            // Act
+            var solveOutcome = solver.Solve(problem);
+
+            // Assert
+            solveOutcome.Classification.Should().Be(SolutionOutcomeClassification.Solution);
             solveOutcome.Problem.Should().BeSameAs(problem);
         }
     }
